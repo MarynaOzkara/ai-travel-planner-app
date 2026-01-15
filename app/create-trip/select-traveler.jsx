@@ -17,7 +17,7 @@ const SelectTraveler = () => {
   const router = useRouter();
   const [selectedTravelers, setSelectedTravelers] = useState(null);
   const { tripData, setTripData } = useContext(CreateTripContext);
-  console.log(tripData);
+  // console.log(tripData);
   useEffect(() => {
     navigation.setOptions({
       headerShown: true,

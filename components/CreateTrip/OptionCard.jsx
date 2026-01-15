@@ -2,7 +2,6 @@ import { StyleSheet, Text, View } from "react-native";
 import { Colors } from "../../constants/colors";
 
 const OptionCard = ({ option, selected }) => {
-  console.log(selected);
   return (
     <View
       style={[
