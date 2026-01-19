@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     backgroundColor: Colors.darkGreen,
     padding: 15,
-    borderRadius: 10,
+    borderRadius: 20,
     alignItems: "center",
   },
   buttonText: {

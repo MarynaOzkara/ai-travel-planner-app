@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: "outfit-medium",
-    fontSize: 24,
+    fontSize: 23,
   },
   desc: {
     fontFamily: "outfit-regular",
@@ -45,12 +45,12 @@ const styles = StyleSheet.create({
   button: {
     padding: 15,
     paddingHorizontal: 30,
-    borderRadius: 15,
+    borderRadius: 20,
     backgroundColor: Colors.green,
   },
   buttonText: {
     fontFamily: "outfit-medium",
-    fontSize: 18,
+    fontSize: 17,
     color: Colors.white,
   },
 });

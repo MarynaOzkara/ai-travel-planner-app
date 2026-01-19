@@ -50,13 +50,13 @@ const SignIn = () => {
       <TouchableOpacity onPress={() => router.back()}>
         <Ionicons name="arrow-back" size={24} color={Colors.primary} />
       </TouchableOpacity>
-      <Text style={styles.title}>Let's Sign Your In</Text>
+      <Text style={styles.title}>Let's Sign You In</Text>
       <Text style={styles.desc}>Welcome back to</Text>
       <Text
         style={{
           fontFamily: "outfit-bold",
           color: Colors.darkGreen,
-          fontSize: 30,
+          fontSize: 28,
         }}
       >
         AI Travel Planner!
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
   },
   desc: {
     fontFamily: "outfit-medium",
-    fontSize: 30,
+    fontSize: 28,
     color: Colors.gray,
     marginTop: 20,
   },

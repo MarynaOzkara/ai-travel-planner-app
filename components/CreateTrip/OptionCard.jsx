@@ -12,7 +12,7 @@ const OptionCard = ({ option, selected }) => {
         },
       ]}
     >
-      <View>
+      <View style={{ width: "85%" }}>
         <Text style={styles.title}>{option.title}</Text>
         <Text style={styles.desc}>{option.desc}</Text>
       </View>
@@ -37,11 +37,11 @@ const styles = StyleSheet.create({
   ],
   title: {
     fontFamily: "outfit-bold",
-    fontSize: 20,
+    fontSize: 18,
   },
   desc: {
     fontFamily: "outfit-medium",
-    fontSize: 16,
+    fontSize: 14,
     marginTop: 5,
     color: Colors.gray,
   },

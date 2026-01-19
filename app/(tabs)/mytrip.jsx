@@ -10,7 +10,7 @@ const MyTrip = () => {
   const router = useRouter();
   const user = auth.currentUser;
   const [userTrips, setUserTrips] = useState([]);
-  console.log(user);
+  // console.log(user);
   return (
     <View style={styles.container}>
       <View
@@ -44,6 +44,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: "outfit-bold",
-    fontSize: 30,
+    fontSize: 28,
   },
 });

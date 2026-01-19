@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: "outfit-bold",
-    fontSize: 30,
+    fontSize: 28,
     marginTop: 20,
     color: Colors.primary,
   },
@@ -75,13 +75,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginTop: 20,
     color: Colors.gray,
-    marginBottom: 30,
   },
   button: {
-    marginTop: 20,
+    marginBottom: 30,
     backgroundColor: Colors.darkGreen,
     padding: 15,
-    borderRadius: 10,
+    borderRadius: 20,
     alignItems: "center",
   },
   buttonText: {
