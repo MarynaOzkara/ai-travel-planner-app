@@ -10,7 +10,7 @@ const Profile = () => {
     router.replace("/");
   };
   return (
-    <View>
+    <View style={styles.container}>
       <TouchableOpacity
         style={{ padding: 15, backgroundColor: Colors.green }}
         onPress={logOut}
@@ -23,4 +23,11 @@ const Profile = () => {
 
 export default Profile;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    padding: 25,
+    paddingTop: 55,
+    backgroundColor: Colors.white,
+    height: "100%",
+  },
+});
