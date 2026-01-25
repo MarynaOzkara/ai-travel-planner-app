@@ -13,11 +13,11 @@ const GenerateTrip = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const user = auth.currentUser;
-  console.log("user in generate trip:", user);
+  // console.log("user in generate trip:", user);
   // console.log("tripData in generate trip:", tripData);
   useEffect(() => {
-    tripData && generateAiTrip();
-  }, [tripData]);
+    generateAiTrip();
+  }, []);
   const generateAiTrip = async () => {
     setLoading(true);
     const FINAL_PROMT = AI_PROMT.replace(
@@ -25,6 +25,8 @@ const GenerateTrip = () => {
       tripData.locationInfo.name,
     )
       .replace("{totalDays}", tripData.totalDays)
+      .replace("{startDate}", tripData.startDate)
+      .replace("{endDate}", tripData.endDate)
       .replace("{travelers}", tripData.travelers.title)
       .replace("{budget}", tripData.budget)
       .replace("{totalDays}", tripData.totalDays);
@@ -40,14 +42,16 @@ const GenerateTrip = () => {
       model: "gemini-3-flash-preview",
       contents: FINAL_PROMT,
     });
-    console.log(response.text);
-    const tripResponse = JSON.parse(response.text);
+    // console.log(response.text);
+
     setLoading(false);
 
     const docId = Date.now().toString();
     await setDoc(doc(db, "userTrips", docId), {
       userEmail: user.email,
-      tripData: tripResponse,
+      tripPlan: response.text,
+      tripData: JSON.stringify(tripData),
+      docId: docId,
     });
 
     router.replace("(tabs)/mytrip");

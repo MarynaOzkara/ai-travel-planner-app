@@ -1,15 +1,43 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
-import { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import {
+  ActivityIndicator,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import StartNewTrip from "../../components/MyTrips/StartNewTrip";
-import { auth } from "../../configs/FirebaseConfig";
+import UserTripsList from "../../components/MyTrips/UserTripsList";
+import { auth, db } from "../../configs/FirebaseConfig";
 import { Colors } from "../../constants/colors";
 
 const MyTrip = () => {
   const router = useRouter();
   const user = auth.currentUser;
   const [userTrips, setUserTrips] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    user && getMyTrips();
+  }, [user]);
+  const getMyTrips = async () => {
+    setLoading(true);
+    setUserTrips([]);
+
+    const q = query(
+      collection(db, "userTrips"),
+      where("userEmail", "==", user.email),
+    );
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      console.log(doc.id, " => ", doc.data());
+      setUserTrips((prevTrips) => [...prevTrips, doc.data()]);
+      setLoading(false);
+    });
+  };
   // console.log(user);
   return (
     <View style={styles.container}>
@@ -28,7 +56,12 @@ const MyTrip = () => {
           <Ionicons name="add-circle" size={50} color={Colors.darkGreen} />
         </TouchableOpacity>
       </View>
-      {userTrips?.length === 0 ? <StartNewTrip /> : null}
+      {loading && <ActivityIndicator size="large" color={Colors.darkGreen} />}
+      {userTrips?.length === 0 ? (
+        <StartNewTrip />
+      ) : (
+        <UserTripsList userTrips={userTrips} />
+      )}
     </View>
   );
 };
@@ -44,6 +77,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: "outfit-bold",
-    fontSize: 28,
+    fontSize: 26,
+    color: Colors.primary,
   },
 });
