@@ -49,7 +49,77 @@ export const BudgetOptions = [
   },
 ];
 
-export const AI_PROMT = `Generate a Travel Plan for location: {location}, for {totalDays} days starts from {startDate} and ends at {endDate} for {travelers} for a {budget} budget with a flight details, Flight Price with a Booking url, Hotels options list with HotelName, Hotel address, Price, Hotel image url, geo coordinates, rating, descriptions, Booking url, and Places to visit nearby with PlaceName, Price, Details, Place Image Url, geo coordinates, Ticket Pricing, Booking url, Time to travel each of the location for {totalDays} days plane with best time to visit in JSON format. Please include also in the itinerary restorants or caffe where people can have a breakfast, lounch and dinner with. Plane please itinerary activities time from 09:00 - 18:00 each day. Make sure to provide Booking url for flights, hotels and tickets for activities. Use this format for Booking url:
+export const AI_PROMT = `Generate a Travel Plan for location: {location}, for {totalDays} days starts from {startDate} and ends at {endDate} for {travelers} for a {budget} budget with a flight details, Flight Price with a Booking url, Hotels options list with HotelName, Hotel address, Price, Hotel image url, geo coordinates, rating, descriptions, Booking url, and Places to visit nearby with PlaceName, Price, Details, Place Image Url, geo coordinates, 
+Ticket Pricing, Booking url, Time to travel each of the location for {totalDays} days plane with best time to visit in JSON format. Please include also in the itinerary restorants or caffe where people can have a breakfast, lounch and dinner with Place Name, Address, Image Url and Price. Plane please itinerary activities time from 09:00 - 18:00 each day. Make sure to provide Booking url for flights, hotels and tickets for activities. 
+And calculate aproximatly price for trip for one persone including FlightPrice, HotelPrice and ActivitiesPrice. Use this format for Booking url:
   1. 1.Search tickets for activities at https://tiqets.com. When you make a booking url use always this link https://tp.media/r?marker=58449&trs=331062&p=2074&u=https%3A%2F%2Ftiqets.com&campaign_id=89 only change location for activities. For example, for Prague for link https://www.tiqets.com/en/prague-attractions-c64162/ it will be https://tp.media/r?marker=58449&trs=331062&p=2074&u=https%3A%2F%2Fwww.tiqets.com%2Fen%2Fprague-attractions-c64162%2F&campaign_id=89
   2. Search flights at kiwi.com and add Bookin url www.kiwi.com/deep?affilid=ozkarablogaitripplanner&currency=EUR&departure=anytime&lang=en&return=anytime&returnFromDifferentAirport=false&returnToDifferentAirport=false. Only change destination and dates for trip, for example for Prague from 16 March to 18 March www.kiwi.com/deep?affilid=ozkarablogaitripplanner&currency=EUR&departure=2026-03-16_2026-03-16&destination=prague_cz&lang=en&return=2026-03-18_2026-03-18&returnFromDifferentAirport=false&returnToDifferentAirport=false 
+  3. Search hotels at booking.com and add Booking url https://www.booking.com/. 
+  4. Generate and return a strict  JSON response only  with following JSON schema:
+  {
+ "tripDetails": 
+{ 
+"location": "",
+"duration": "", 
+"startDate": "", 
+"endDate": "", 
+"travelerCount": , 
+"budget": ""
+ },
+"flight": 
+{ 
+"airline": "", 
+"price": "", 
+"bookingUrl": "" 
+}, 
+"hotels": 
+[ 
+{ 
+"hotelName": "", 
+"address": "", 
+"price": "", 
+"imageUrl": "", 
+"geoCoordinates": 
+{ 
+"latitude": , 
+"longitude":  
+}, 
+"rating": , 
+"description": "", 
+"bookingUrl": "" 
+},  
+], 
+"itinerary": 
+[ 
+{ 
+"day": , 
+"date": "", 
+"activities": 
+[  
+{ 
+"time": "", 
+"activity": "", 
+"placeName": "", 
+"details": "", 
+"price": "", 
+"ticketPricing": "", 
+"imageUrl": "", 
+"geoCoordinates": 
+{
+"latitude": , 
+"longitude": 
+ }, 
+"bookingUrl": "" 
+},
+]
+ }, 
+ ],
+"aproxPrice": 
+{
+      "flightPrice": "" ,
+       "hotelPrice": "",
+        "activitiesPrice": "" ,
+        "totalPrice": "" 
+}
+}
   `;

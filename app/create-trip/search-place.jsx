@@ -48,6 +48,7 @@ const SearchPlace = () => {
         query={{
           key: process.env.EXPO_PUBLIC_GOOGLE_MAP_KEY,
           language: "en",
+          type: "(cities)",
         }}
       />
     </View>

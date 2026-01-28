@@ -4,6 +4,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import {
   ActivityIndicator,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -33,7 +34,7 @@ const MyTrip = () => {
     );
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      console.log(doc.id, " => ", doc.data());
+      // console.log(doc.id, " => ", doc.data());
       setUserTrips((prevTrips) => [...prevTrips, doc.data()]);
       setLoading(false);
     });
@@ -56,12 +57,14 @@ const MyTrip = () => {
           <Ionicons name="add-circle" size={50} color={Colors.darkGreen} />
         </TouchableOpacity>
       </View>
-      {loading && <ActivityIndicator size="large" color={Colors.darkGreen} />}
-      {userTrips?.length === 0 ? (
-        <StartNewTrip />
-      ) : (
-        <UserTripsList userTrips={userTrips} />
-      )}
+      <ScrollView>
+        {loading && <ActivityIndicator size="large" color={Colors.darkGreen} />}
+        {userTrips?.length === 0 ? (
+          <StartNewTrip />
+        ) : (
+          <UserTripsList userTrips={userTrips} />
+        )}
+      </ScrollView>
     </View>
   );
 };

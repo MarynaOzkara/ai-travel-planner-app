@@ -1,16 +1,34 @@
+import { useRouter } from "expo-router";
 import moment from "moment";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Colors } from "../../constants/colors";
 
 const UserTripCard = ({ trip }) => {
   const tripData = JSON.parse(trip.tripData);
-  console.log(tripData);
+  const router = useRouter();
+  // console.log(tripData);
+  const uri = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${tripData.locationInfo.photoRef}&key=${process.env.EXPO_PUBLIC_GOOGLE_MAP_KEY}`;
   return (
-    <View style={styles.container}>
-      <Image
-        source={require("../../assets/images/login.jpg")}
-        style={styles.image}
-      />
+    <TouchableOpacity
+      onPress={() =>
+        router.push({
+          pathname: "/trip-details",
+          params: {
+            trip: trip.tripPlan,
+          },
+        })
+      }
+      style={styles.container}
+    >
+      {tripData.locationInfo.photoRef ? (
+        <Image source={{ uri: uri }} style={styles.image} />
+      ) : (
+        <Image
+          source={require("../../assets/images/login.jpg")}
+          style={styles.image}
+        />
+      )}
+
       <View>
         <Text style={styles.title}>{tripData?.locationInfo?.name}</Text>
         <Text style={styles.desc}>
@@ -18,7 +36,7 @@ const UserTripCard = ({ trip }) => {
         </Text>
         <Text style={styles.desc}>{tripData?.travelers.title}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
